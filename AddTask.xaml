@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="ToDoList.AddTask"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ToDoList"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView x:Name="Menu" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
+            <SplitView.Pane>
+                <StackPanel Background="Gray">
+                    <Button x:Name="HamburgerButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Click="HamburgerButton_Click"></Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="HomeButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE80F;" Width="50" Height="50"></Button>
+                        <TextBlock Text="Home" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="AddButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" Width="50" Height="50"></Button>
+                        <TextBlock Text="Add task" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid Background="White">
+                    <StackPanel Name="TaskDisplay" Orientation="Vertical">
+                        <StackPanel Background="Gray">
+                            <TextBlock HorizontalAlignment="Center" Text="Add a task" FontSize="20" Margin="10, 10, 10, 10"/>
+                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" Margin="0,10">
+                                    <TextBlock Text="Name:" Grid.Column="0" Width="100" Padding="10"/>
+                                    <TextBox x:Name="TaskName" Grid.Column="1"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,10">
+                                    <TextBlock Text="Description:" Grid.Column="0" Padding="10"/>
+                                    <TextBox x:Name="TaskDescription" Grid.Column="1"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,10">
+                                    <TextBlock Text="Due Date:" Grid.Column="0" Padding="10"/>
+                                    <DatePicker x:Name="TaskDate" Grid.Column="1"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>
