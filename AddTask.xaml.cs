@@ -26,5 +26,23 @@ namespace ToDoList
         {
             this.InitializeComponent();
         }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.IsPaneOpen = !Menu.IsPaneOpen;
+        }
+
+        private void HomeMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
+
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime date = new DateTime(TaskDate.Date.DateTime.Year, TaskDate.Date.DateTime.Month, TaskDate.Date.DateTime.Day, TaskTime.Time.Hours, TaskTime.Time.Minutes, TaskTime.Time.Seconds);
+            Task task = new ToDoList.Task(TaskName.Text, TaskDescription.Text, date.ToLocalTime());
+            TaskModel.add(task);
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

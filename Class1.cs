@@ -49,9 +49,31 @@ namespace ToDoList
         {
             List<Task> tasks = new List<Task>();
             tasks = (from t in Database.getInstance().conn.Table<Task>()
-                        select t).ToList();
+                     orderby t.dueDate ascending
+                     select t).ToList();
             return tasks;
         }
+
+        static public List<Task> findAllDone()
+        {
+            List<Task> tasks = new List<Task>();
+            tasks = (from t in Database.getInstance().conn.Table<Task>()
+                     orderby t.dueDate ascending
+                     where t.completed == true
+                     select t).ToList();
+            return tasks;
+        }
+
+        static public List<Task> findAllNotDone()
+        {
+            List<Task> tasks = new List<Task>();
+            tasks = (from t in Database.getInstance().conn.Table<Task>()
+                     orderby t.dueDate ascending
+                     where t.completed == false
+                     select t).ToList();
+            return tasks;
+        }
+
 
         static public Task findById(int id)
         {
@@ -70,11 +92,11 @@ namespace ToDoList
         public string name { get; set; }
         public string content { get; set; }
         public DateTime dueDate { get; set; }
-        public bool completed { get; set; }
+        public bool? completed { get; set; }
         
         public Task()
         {
-
+            this.completed = false;
         }
 
         public Task(string name, string content, DateTime date)
@@ -82,6 +104,7 @@ namespace ToDoList
             this.name = name;
             this.content = content;
             this.dueDate = date;
+            this.completed = false;
         }
     }
 }
